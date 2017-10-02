@@ -17,6 +17,7 @@
 		CF52CAA11F829538005AE83A /* TesterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF52CAA01F829538005AE83A /* TesterTests.swift */; };
 		CF52CAAC1F829538005AE83A /* TesterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF52CAAB1F829538005AE83A /* TesterUITests.swift */; };
 		CF52CABA1F829691005AE83A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CF52CAB91F8295AA005AE83A /* GoogleService-Info.plist */; };
+		CFE76CF01F82B8B200147319 /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE76CEF1F82B8B200147319 /* Validator.swift */; };
 		DEE48282F0B78E26BDC50E2E /* Pods_TesterUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E27E4B4ADE3B7A036D94D70F /* Pods_TesterUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -59,6 +60,7 @@
 		CF52CAAB1F829538005AE83A /* TesterUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TesterUITests.swift; sourceTree = "<group>"; };
 		CF52CAAD1F829538005AE83A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CF52CAB91F8295AA005AE83A /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		CFE76CEF1F82B8B200147319 /* Validator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validator.swift; sourceTree = "<group>"; };
 		D4C1003C08C1974F7A0C2A46 /* Pods-Tester.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tester.release.xcconfig"; path = "Pods/Target Support Files/Pods-Tester/Pods-Tester.release.xcconfig"; sourceTree = "<group>"; };
 		E27E4B4ADE3B7A036D94D70F /* Pods_TesterUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TesterUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -126,13 +128,15 @@
 		CF52CA8A1F829537005AE83A /* Tester */ = {
 			isa = PBXGroup;
 			children = (
-				CF52CA8B1F829537005AE83A /* AppDelegate.swift */,
-				CF52CA8D1F829537005AE83A /* ViewController.swift */,
+				CFE76CF11F82B8B900147319 /* Model */,
+				CFE76CF21F82B8C400147319 /* View */,
+				CFE76CF31F82B8C800147319 /* Controller */,
+				CFE76CF41F82B98A00147319 /* Support */,
 				CF52CA8F1F829537005AE83A /* Main.storyboard */,
-				CF52CA921F829537005AE83A /* Assets.xcassets */,
 				CF52CA941F829537005AE83A /* LaunchScreen.storyboard */,
-				CF52CAB91F8295AA005AE83A /* GoogleService-Info.plist */,
 				CF52CA971F829538005AE83A /* Info.plist */,
+				CF52CAB91F8295AA005AE83A /* GoogleService-Info.plist */,
+				CF52CA921F829537005AE83A /* Assets.xcassets */,
 			);
 			path = Tester;
 			sourceTree = "<group>";
@@ -153,6 +157,37 @@
 				CF52CAAD1F829538005AE83A /* Info.plist */,
 			);
 			path = TesterUITests;
+			sourceTree = "<group>";
+		};
+		CFE76CF11F82B8B900147319 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CFE76CEF1F82B8B200147319 /* Validator.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CFE76CF21F82B8C400147319 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CFE76CF31F82B8C800147319 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				CF52CA8B1F829537005AE83A /* AppDelegate.swift */,
+				CF52CA8D1F829537005AE83A /* ViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		CFE76CF41F82B98A00147319 /* Support */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Support;
 			sourceTree = "<group>";
 		};
 		F3C2174D412C9291BF285718 /* Pods */ = {
@@ -451,6 +486,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CF52CA8E1F829537005AE83A /* ViewController.swift in Sources */,
+				CFE76CF01F82B8B200147319 /* Validator.swift in Sources */,
 				CF52CA8C1F829537005AE83A /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
