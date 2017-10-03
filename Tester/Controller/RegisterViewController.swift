@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  RegisterViewController.swift
 //  Tester
 //
 //  Created by Elijah Carrington on 10/2/17.
@@ -9,28 +9,32 @@
 import UIKit
 import FirebaseAuth
 
-class ViewController: UIViewController {
-    
-    @IBOutlet weak var emailField: UITextField!
-    @IBOutlet weak var passwordField: UITextField!
+class RegisterViewController: UIViewController {
+
+    @IBOutlet weak var handleLabel: UILabel!
+    @IBOutlet weak var handleField: UITextField!
+    @IBOutlet weak var usernameLabel: UILabel!
+    @IBOutlet weak var usernameField: UITextField!
     @IBOutlet weak var registerButton: UIButton!
     
     var handle: AuthStateDidChangeListenerHandle?
-    var validator: Validator?
+    
+    // MARK: - View Loaded
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        
-        validator = Validator()
+
+        // Hide back button to prevent going back
+        navigationItem.hidesBackButton = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         // Init handle to listen for login
-        handle = Auth.auth().addStateDidChangeListener { (auth, user) in
-        }
+        handle = Auth.auth().addStateDidChangeListener({ (auth, user) in
+            
+        })
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -45,24 +49,19 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func registerButtonPressed(_ sender: UIButton) {
-        
-        registerButton.setTitle("Loading...", for: .normal)
-        
-        if let email = emailField.text, let password = passwordField.text {
-            
-            let e = validator!.isValidEmail(email: email)
-            print(e)
-            
-//            Auth.auth().createUser(withEmail: email, password: password, completion: { (user, error) in
-//                if user != nil {
-//                     self.registerButton.setTitle("Success!", for: .normal)
-//                }
-//            })
-        }
+    // MARK: - Navigation
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+
     }
     
+    @IBAction func registerButtonPressed(_ sender: UIButton) {
+        
+        let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
+        changeRequest?.displayName = ""
+        changeRequest?.commitChanges(completion: { (error) in
+            
+        })
+    }
 
-    
 }
-
