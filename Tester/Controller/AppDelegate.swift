@@ -19,6 +19,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         FirebaseApp.configure()
         
+        let _ = Firestore.firestore()
+        
+        // Change color of Navigation Bar title
+        let barAppearance = UINavigationBar.appearance()
+        
+        barAppearance.barTintColor = .black
+        barAppearance.tintColor = .white
+        barAppearance.titleTextAttributes =
+            [NSAttributedStringKey.foregroundColor: UIColor.white]
+        barAppearance.largeTitleTextAttributes =
+            [NSAttributedStringKey.foregroundColor: UIColor.white]
+        
+        // Change status bar color to light
+        UIApplication.shared.statusBarStyle = .lightContent
+        
         return true
     }
 

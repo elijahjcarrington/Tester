@@ -9,9 +9,10 @@
 import Foundation
 import FirebaseAuth
 
-struct Validator {
+struct FieldValidator {
     
     func isValidEmail(email:String) -> Bool {
+        
         // Ensure input is an email
         let emailRegEx = "^(?:(?:(?:(?: )*(?:(?:(?:\\t| )*\\r\\n)?(?:\\t| )+))+(?: )*)|(?: )+)?(?:(?:(?:[-A-Za-z0-9!#$%&’*+/=?^_'{|}~]+(?:\\.[-A-Za-z0-9!#$%&’*+/=?^_'{|}~]+)*)|(?:\"(?:(?:(?:(?: )*(?:(?:[!#-Z^-~]|\\[|\\])|(?:\\\\(?:\\t|[ -~]))))+(?: )*)|(?: )+)\"))(?:@)(?:(?:(?:[A-Za-z0-9](?:[-A-Za-z0-9]{0,61}[A-Za-z0-9])?)(?:\\.[A-Za-z0-9](?:[-A-Za-z0-9]{0,61}[A-Za-z0-9])?)*)|(?:\\[(?:(?:(?:(?:(?:[0-9]|(?:[1-9][0-9])|(?:1[0-9][0-9])|(?:2[0-4][0-9])|(?:25[0-5]))\\.){3}(?:[0-9]|(?:[1-9][0-9])|(?:1[0-9][0-9])|(?:2[0-4][0-9])|(?:25[0-5]))))|(?:(?:(?: )*[!-Z^-~])*(?: )*)|(?:[Vv][0-9A-Fa-f]+\\.[-A-Za-z0-9._~!$&'()*+,;=:]+))\\])))(?:(?:(?:(?: )*(?:(?:(?:\\t| )*\\r\\n)?(?:\\t| )+))+(?: )*)|(?: )+)?$"
         let matchesRegEx = NSPredicate(format:"SELF MATCHES %@", emailRegEx).evaluate(with: email)
@@ -19,7 +20,12 @@ struct Validator {
     }
     
     func isValidUsername(username: String) -> Bool {
-        if username.characters.count >= 4 {
+        
+        // Trim any whitespace in username
+        let trimmedUsername = username.trimmingCharacters(in: .whitespacesAndNewlines)
+        
+        // Check that username is between 4 and 16 chars
+        if (4...16 ~= trimmedUsername.characters.count) {
             return true
         } else {
             return false
@@ -27,10 +33,19 @@ struct Validator {
     }
     
     func isValidPassword(password: String, confirm : String) -> Bool {
-        if password.characters.count >= 4 && confirm.characters.count >= 4 && password == confirm {
-            return true
-        } else {
-            return false
+        
+        // Trim any whitespace in fields
+        let trimmedPassword = password.trimmingCharacters(in: .whitespacesAndNewlines)
+        let trimmedConfirm = confirm.trimmingCharacters(in: .whitespacesAndNewlines)
+        
+        // Check that password is between 6 and 64 chars
+        if (6...64 ~= trimmedPassword.characters.count && 6...64 ~= trimmedConfirm.characters.count) {
+            if password == confirm {
+                return true
+            } else {
+                return false
+            }
         }
+        return false
     }
 }
